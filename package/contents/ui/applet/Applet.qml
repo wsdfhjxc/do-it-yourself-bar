@@ -25,5 +25,6 @@ Item {
 
     DoItYourselfBar {
         id: backend
+        cfg_DBusInstanceId: config.DBusInstanceId
     }
 }
