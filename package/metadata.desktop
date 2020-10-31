@@ -1,0 +1,13 @@
+[Desktop Entry]
+Name=Do It Yourself Bar
+Comment=Displays data passed through D-Bus
+Icon=doityourselfbar
+Type=Service
+
+X-KDE-PluginInfo-Name=org.kde.plasma.doityourselfbar
+X-KDE-PluginInfo-Version=1.0
+X-KDE-PluginInfo-Author=wsdfhjxc
+X-KDE-ServiceTypes=Plasma/Applet
+
+X-Plasma-MainScript=ui/applet/Applet.qml
+X-Plasma-API=declarativeappletscript
