@@ -51,6 +51,7 @@ add_library(doityourselfbar SHARED ${doityourselfbar_SRCS})
 
 target_link_libraries(doityourselfbar
                       Qt5::Qml
+                      Qt5::DBus
                       KF5::Plasma)
 
 install(TARGETS doityourselfbar DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/doityourselfbar)
