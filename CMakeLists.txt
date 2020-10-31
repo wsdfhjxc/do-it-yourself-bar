@@ -31,7 +31,8 @@ set(KF5_MIN_VERSION 5.44.0)
 
 find_package(Qt5 ${REQUIRED_QT_VERSION}
              CONFIG REQUIRED
-             Qml)
+             Qml
+             DBus)
 
 find_package(KF5 ${KF5_MIN_VERSION}
              REQUIRED COMPONENTS
@@ -41,6 +42,7 @@ plasma_install_package(package org.kde.plasma.doityourselfbar)
 
 set(doityourselfbar_SRCS
     plugin/BlockInfo.cpp
+    plugin/DBusService.cpp
     plugin/DoItYourselfBar.cpp
     plugin/DoItYourselfBarPlugin.cpp
 )
@@ -53,3 +55,5 @@ target_link_libraries(doityourselfbar
 
 install(TARGETS doityourselfbar DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/doityourselfbar)
 install(FILES plugin/qmldir DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/doityourselfbar)
+
+ecm_install_icons(ICONS icons/sc-apps-doityourselfbar.svg DESTINATION ${ICON_INSTALL_DIR})
