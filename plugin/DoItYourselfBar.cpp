@@ -22,13 +22,15 @@ void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
         sessionBus.unregisterObject(path, QDBusConnection::UnregisterTree);
     }
 
-    bool dbusSuccess = cfg_DBusInstanceId != 0;
+    bool dbusSuccess = false;
 
     if (cfg_DBusInstanceId != 0) {
-        dbusInstanceId = cfg_DBusInstanceId;
-        QString path = "/id_" + QString::number(dbusInstanceId);
-        dbusSuccess = sessionBus.registerObject(path, QString(SERVICE_NAME),
-                                                    &dbusService, QDBusConnection::ExportAllSlots);
+        QString path = "/id_" + QString::number(cfg_DBusInstanceId);
+        if (sessionBus.registerObject(path, QString(SERVICE_NAME),
+                                      &dbusService, QDBusConnection::ExportAllSlots)) {
+            dbusSuccess = true;
+            dbusInstanceId = cfg_DBusInstanceId;
+        }
     }
 
     emit dbusSuccessChanged(dbusSuccess);
