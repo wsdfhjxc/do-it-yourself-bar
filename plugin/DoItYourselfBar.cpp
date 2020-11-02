@@ -2,6 +2,9 @@
 
 #include <QDBusConnection>
 #include <QDebug>
+#include <QVariantList>
+
+#include "BlockInfo.hpp"
 
 DoItYourselfBar::DoItYourselfBar(QObject* parent) :
         QObject(parent),
@@ -37,5 +40,43 @@ void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
 }
 
 void DoItYourselfBar::handlePassedData(QString data) {
-    qDebug() << "Data passed:" << data;
+    QVariantList blockInfoList;
+
+    BlockInfo blockInfo;
+    int separatorCount = 0;
+
+    for (int i = 0; i < data.length(); i++) {
+        QChar character = data.at(i);
+
+        if (character == QChar('|')) {
+            separatorCount++;
+
+            if (separatorCount == 5) {
+                blockInfo.style = blockInfo.style.trimmed();
+                blockInfo.labelText = blockInfo.labelText.trimmed();
+                blockInfo.tooltipText = blockInfo.tooltipText.trimmed();
+                blockInfo.commandToExecOnClick = blockInfo.commandToExecOnClick.trimmed();
+
+                blockInfoList << blockInfo.toQVariantMap();
+
+                blockInfo = BlockInfo();
+
+                separatorCount = 0;
+            }
+
+            continue;
+        }
+
+        if (separatorCount == 1) {
+            blockInfo.style += character;
+        } else if (separatorCount == 2) {
+            blockInfo.labelText += character;
+        } else if (separatorCount == 3) {
+            blockInfo.tooltipText += character;
+        } else if (separatorCount == 4) {
+            blockInfo.commandToExecOnClick += character;
+        } else {
+            separatorCount = -1;
+        }
+    }
 }
