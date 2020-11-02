@@ -42,7 +42,7 @@ void DoItYourselfBar::handlePassedData(QString data) {
     QVariantList blockInfoList;
 
     BlockInfo blockInfo;
-    int separatorCount = 0;
+    int separatorCount = !data.isEmpty() ? 0 : -1;
 
     for (int i = 0; i < data.length(); i++) {
         QChar character = data.at(i);
@@ -50,36 +50,34 @@ void DoItYourselfBar::handlePassedData(QString data) {
         if (character == QChar('|')) {
             separatorCount++;
 
-            if (separatorCount == 5) {
+            if (separatorCount % 5 == 0) {
                 blockInfo.style = blockInfo.style.trimmed();
                 blockInfo.labelText = blockInfo.labelText.trimmed();
                 blockInfo.tooltipText = blockInfo.tooltipText.trimmed();
                 blockInfo.commandToExecOnClick = blockInfo.commandToExecOnClick.trimmed();
 
                 blockInfoList << blockInfo.toQVariantMap();
-
                 blockInfo = BlockInfo();
-
-                separatorCount = 0;
             }
 
             continue;
         }
 
-        if (separatorCount == 1) {
+        if (separatorCount % 5 == 1) {
             blockInfo.style += character;
-        } else if (separatorCount == 2) {
+        } else if (separatorCount % 5 == 2) {
             blockInfo.labelText += character;
-        } else if (separatorCount == 3) {
+        } else if (separatorCount % 5 == 3) {
             blockInfo.tooltipText += character;
-        } else if (separatorCount == 4) {
+        } else if (separatorCount % 5 == 4) {
             blockInfo.commandToExecOnClick += character;
         } else {
             separatorCount = -1;
+            break;
         }
     }
 
-    if (separatorCount != 0) {
+    if (separatorCount % 5 != 0) {
         emit invalidDataFormatDetected();
     } else {
         emit blockInfoListSent(blockInfoList);
