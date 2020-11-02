@@ -3,10 +3,10 @@
 #include <QDBusConnection>
 #include <QDebug>
 
-DoItYourselfBar::DoItYourselfBar(QObject* parent) : QObject(parent),
+DoItYourselfBar::DoItYourselfBar(QObject* parent) :
+        QObject(parent),
         dbusService(parent),
         dbusInstanceId(0),
-        dbusError(false),
         cfg_DBusInstanceId(0) {
 
     QObject::connect(&dbusService, &DBusService::dataPassed,
@@ -22,15 +22,16 @@ void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
         sessionBus.unregisterObject(path, QDBusConnection::UnregisterTree);
     }
 
-    if (cfg_DBusInstanceId == 0) {
-        dbusError = true;
-        return;
+    bool dbusSuccess = cfg_DBusInstanceId != 0;
+
+    if (cfg_DBusInstanceId != 0) {
+        dbusInstanceId = cfg_DBusInstanceId;
+        QString path = "/id_" + QString::number(dbusInstanceId);
+        dbusSuccess = sessionBus.registerObject(path, QString(SERVICE_NAME),
+                                                    &dbusService, QDBusConnection::ExportAllSlots);
     }
 
-    dbusInstanceId = cfg_DBusInstanceId;
-
-    QString path = "/id_" + QString::number(dbusInstanceId);
-    dbusError = !sessionBus.registerObject(path, QString(SERVICE_NAME), &dbusService, QDBusConnection::ExportAllSlots);
+    emit dbusSuccessChanged(dbusSuccess);
 }
 
 void DoItYourselfBar::handlePassedData(QString data) {

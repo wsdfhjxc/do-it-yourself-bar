@@ -5,9 +5,6 @@ import QtQuick.Layouts 1.3
 import "../common" as UICommon
 
 Item {
-    //property alias dbusError: plasmoid.nativeInterface.dbusError
-    property bool dbusError: true
-
     // D-Bus service
     property alias cfg_DBusInstanceId: dbusInstanceIdSpinBox.value
 
@@ -40,15 +37,19 @@ Item {
             }
 
             Label {
-                text: dbusError ? "NOT OK" : "OK"
-                color: dbusError ? "red" : "green"
+                text: plasmoid.configuration.DBusSuccess ? "RUNNING" : "STOPPED"
+                color: plasmoid.configuration.DBusSuccess ? "green" : "red"
             }
 
             HintIcon {
-                visible: dbusError
-                tooltipText: cfg_DBusInstanceId == 0 ?
-                             "The ID must be a NON-ZERO number" :
-                             "There might be a collision, try with a different ID number"
+                tooltipText: {
+                    if (plasmoid.configuration.DBusSuccess) {
+                        return "You can now pass data to this applet instance"
+                    }
+                    return plasmoid.configuration.DBusInstanceId == 0 ?
+                           "The ID must be a NON-ZERO number" :
+                           "There might be a collision, try with a different ID number"
+                }
             }
         }
     }

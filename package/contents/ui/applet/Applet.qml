@@ -25,6 +25,13 @@ Item {
 
     DoItYourselfBar {
         id: backend
+
         cfg_DBusInstanceId: config.DBusInstanceId
+    }
+
+    Connections {
+        target: backend
+
+        onDbusSuccessChanged: config.DBusSuccess = dbusSuccess
     }
 }
