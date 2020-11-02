@@ -39,5 +39,17 @@ Item {
         // with a value received from the C++ backend. This causes the config
         // dialog to read this property and show D-Bus service status.
         onDbusSuccessChanged: config.DBusSuccess = dbusSuccess
+
+        onInvalidDataFormatDetected: {
+            console.warn("invalid data format detected");
+        }
+
+        onBlockInfoListSent: function(blockInfoList) {
+            console.warn("block info list sent");
+            console.warn(blockInfoList[0].style);
+            console.warn(blockInfoList[0].labelText);
+            console.warn(blockInfoList[0].tooltipText);
+            console.warn(blockInfoList[0].commandToExecOnClick);
+        }
     }
 }

@@ -2,7 +2,6 @@
 
 #include <QDBusConnection>
 #include <QDebug>
-#include <QVariantList>
 
 #include "BlockInfo.hpp"
 
@@ -78,5 +77,11 @@ void DoItYourselfBar::handlePassedData(QString data) {
         } else {
             separatorCount = -1;
         }
+    }
+
+    if (separatorCount != 0) {
+        emit invalidDataFormatDetected();
+    } else {
+        emit blockInfoListSent(blockInfoList);
     }
 }

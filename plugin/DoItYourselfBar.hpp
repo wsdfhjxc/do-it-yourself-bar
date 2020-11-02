@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QVariantList>
 
 #include "DBusService.hpp"
 
@@ -18,6 +19,8 @@ public:
 
 signals:
     void dbusSuccessChanged(bool dbusSuccess);
+    void invalidDataFormatDetected();
+    void blockInfoListSent(QVariantList blockInfoList);
 
 private:
     DBusService dbusService;
