@@ -27,7 +27,8 @@ Item {
             }
 
             HintIcon {
-                tooltipText: "The ID must be a NON-ZERO number different from IDs of other running instances"
+                visible: cfg_DBusInstanceId == 0
+                tooltipText: "The ID must be a NON-ZERO number"
             }
         }
 
@@ -37,7 +38,7 @@ Item {
             }
 
             Label {
-                text: plasmoid.configuration.DBusSuccess ? "RUNNING" : "STOPPED"
+                text: plasmoid.configuration.DBusSuccess ? "OK" : "NOT OK"
                 color: plasmoid.configuration.DBusSuccess ? "green" : "red"
             }
 
