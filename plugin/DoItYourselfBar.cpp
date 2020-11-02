@@ -47,7 +47,16 @@ void DoItYourselfBar::handlePassedData(QString data) {
     for (int i = 0; i < data.length(); i++) {
         QChar character = data.at(i);
 
-        if (character == QChar('|')) {
+        bool isEscapingCharacter = character == QChar('\\') &&
+                                   i < data.length() - 1 &&
+                                   data.at(i + 1) == QChar('|');
+        if (isEscapingCharacter) {
+            continue;
+        }
+
+        bool isSeparatorCharacter = character == QChar('|') &&
+                                    (i == 0 || data.at(i - 1) != QChar('\\'));
+        if (isSeparatorCharacter) {
             separatorCount++;
 
             if (separatorCount % 5 == 0) {
