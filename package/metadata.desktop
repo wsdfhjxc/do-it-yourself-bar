@@ -1,6 +1,6 @@
 [Desktop Entry]
 Name=Do It Yourself Bar
-Comment=Displays data passed through D-Bus
+Comment=Create simple text-based widgets
 Icon=doityourselfbar
 Type=Service
 
