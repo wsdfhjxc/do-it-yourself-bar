@@ -1,6 +1,7 @@
 #pragma once
 
 #include <QObject>
+#include <QString>
 #include <QVariantList>
 
 #include "DBusService.hpp"
@@ -10,6 +11,8 @@ class DoItYourselfBar : public QObject {
 
 public:
     DoItYourselfBar(QObject* parent = nullptr);
+
+    Q_INVOKABLE void runCommand(QString command);
 
     Q_PROPERTY(unsigned cfg_DBusInstanceId
                MEMBER cfg_DBusInstanceId

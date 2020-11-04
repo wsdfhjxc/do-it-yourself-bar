@@ -15,6 +15,12 @@ DoItYourselfBar::DoItYourselfBar(QObject* parent) :
                      this, &DoItYourselfBar::handlePassedData);
 }
 
+void DoItYourselfBar::runCommand(QString command) {
+    if (!command.isEmpty()) {
+        system(QString("(" + command + ") &").toStdString().c_str());
+    }
+}
+
 void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
     auto sessionBus = QDBusConnection::sessionBus();
     sessionBus.registerService(SERVICE_NAME);
