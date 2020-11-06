@@ -35,6 +35,7 @@ private:
 
     DBusService dbusService;
     unsigned dbusInstanceId;
+    bool registerDBusService();
 
     unsigned cfg_DBusInstanceId;
     QString cfg_StartupScriptPath;

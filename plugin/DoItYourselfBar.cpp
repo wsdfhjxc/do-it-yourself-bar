@@ -45,6 +45,11 @@ void DoItYourselfBar::runCommand(QString command) {
 }
 
 void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
+    bool dbusSuccess = registerDBusService();
+    emit dbusSuccessChanged(dbusSuccess);
+}
+
+bool DoItYourselfBar::registerDBusService() {
     auto sessionBus = QDBusConnection::sessionBus();
     sessionBus.registerService(SERVICE_NAME);
 
@@ -64,7 +69,7 @@ void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
         }
     }
 
-    emit dbusSuccessChanged(dbusSuccess);
+    return;
 }
 
 void DoItYourselfBar::handlePassedData(QString data) {
