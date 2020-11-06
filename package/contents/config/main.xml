@@ -18,5 +18,10 @@
       <default>0</default>
     </entry>
 
+    <!-- Behavior - Startup script -->
+    <entry name="StartupScriptPath" type="String">
+      <default></default>
+    </entry>
+
   </group>
 </kcfg>

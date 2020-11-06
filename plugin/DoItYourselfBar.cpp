@@ -1,5 +1,8 @@
 #include "DoItYourselfBar.hpp"
 
+#include <sys/wait.h>
+#include <unistd.h>
+
 #include <QDBusConnection>
 #include <QDebug>
 
@@ -7,12 +10,32 @@
 
 DoItYourselfBar::DoItYourselfBar(QObject* parent) :
         QObject(parent),
+        childPid(0),
         dbusService(parent),
         dbusInstanceId(0),
         cfg_DBusInstanceId(0) {
 
     QObject::connect(&dbusService, &DBusService::dataPassed,
                      this, &DoItYourselfBar::handlePassedData);
+}
+
+DoItYourselfBar::~DoItYourselfBar() {
+    if (childPid > 0) {
+        kill(childPid, SIGTERM);
+    }
+}
+
+void DoItYourselfBar::runStartupScript() {
+    if (!cfg_StartupScriptPath.isEmpty()) {
+        childPid = fork();
+        if (childPid == 0) {
+            QString arg1 = cfg_StartupScriptPath;
+            QString arg2 = QString::number(dbusInstanceId);
+            execl(arg1.toStdString().c_str(),
+                  arg1.toStdString().c_str(),
+                  arg2.toStdString().c_str(), NULL);
+        }
+    }
 }
 
 void DoItYourselfBar::runCommand(QString command) {

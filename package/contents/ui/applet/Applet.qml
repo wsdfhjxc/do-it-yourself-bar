@@ -27,6 +27,7 @@ Item {
         id: backend
 
         cfg_DBusInstanceId: config.DBusInstanceId
+        cfg_StartupScriptPath: config.StartupScriptPath
     }
 
     Connections {
@@ -51,5 +52,10 @@ Item {
             console.warn(blockInfoList[0].tooltipText);
             console.warn(blockInfoList[0].commandToExecOnClick);
         }
+
+    Component.onCompleted: {
+        Qt.callLater(function() {
+            backend.runStartupScript();
+        });
     }
 }
