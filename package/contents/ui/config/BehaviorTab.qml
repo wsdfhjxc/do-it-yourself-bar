@@ -79,11 +79,7 @@ Item {
                 id: startupScriptPathTextField
                 enabled: startupScriptPathCheckBox.checked
                 text: cfg_StartupScriptPath || ""
-                onTextChanged: {
-                    if (cfg_StartupScriptPath && text) {
-                        cfg_StartupScriptPath = text;
-                    }
-                }
+                onTextChanged: cfg_StartupScriptPath = text
                 onEditingFinished: cfg_StartupScriptPath = text
             }
 
