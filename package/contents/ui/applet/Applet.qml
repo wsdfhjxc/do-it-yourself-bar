@@ -52,10 +52,5 @@ Item {
             console.warn(blockInfoList[0].tooltipText);
             console.warn(blockInfoList[0].commandToExecOnClick);
         }
-
-    Component.onCompleted: {
-        Qt.callLater(function() {
-            backend.runStartupScript();
-        });
     }
 }

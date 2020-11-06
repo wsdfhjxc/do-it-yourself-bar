@@ -20,9 +20,7 @@ DoItYourselfBar::DoItYourselfBar(QObject* parent) :
 }
 
 DoItYourselfBar::~DoItYourselfBar() {
-    if (childPid > 0) {
-        kill(childPid, SIGTERM);
-    }
+    killChild();
 }
 
 void DoItYourselfBar::runStartupScript() {
@@ -47,6 +45,17 @@ void DoItYourselfBar::runCommand(QString command) {
 void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
     bool dbusSuccess = registerDBusService();
     emit dbusSuccessChanged(dbusSuccess);
+}
+
+void DoItYourselfBar::cfg_StartupScriptPathChanged() {
+    killChild();
+    runStartupScript();
+}
+
+void DoItYourselfBar::killChild() {
+    if (childPid > 0) {
+        kill(childPid, SIGTERM);
+    }
 }
 
 bool DoItYourselfBar::registerDBusService() {

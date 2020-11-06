@@ -21,9 +21,11 @@ public:
                NOTIFY cfg_DBusInstanceIdChanged)
 
     Q_PROPERTY(QString cfg_StartupScriptPath
-               MEMBER cfg_StartupScriptPath)
+               MEMBER cfg_StartupScriptPath
+               NOTIFY cfg_StartupScriptPathChanged)
 
     void cfg_DBusInstanceIdChanged();
+    void cfg_StartupScriptPathChanged();
 
 signals:
     void dbusSuccessChanged(bool dbusSuccess);
@@ -32,6 +34,7 @@ signals:
 
 private:
     pid_t childPid;
+    void killChild();
 
     DBusService dbusService;
     unsigned dbusInstanceId;
