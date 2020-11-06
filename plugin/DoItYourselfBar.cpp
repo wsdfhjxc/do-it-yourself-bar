@@ -4,7 +4,6 @@
 #include <unistd.h>
 
 #include <QDBusConnection>
-#include <QDebug>
 
 #include "BlockInfo.hpp"
 
