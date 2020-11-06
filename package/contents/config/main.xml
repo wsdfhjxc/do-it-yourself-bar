@@ -23,5 +23,57 @@
       <default></default>
     </entry>
 
+    <!-- Appearance -->
+
+    <!-- Appearance - Animations -->
+    <entry name="AnimationsEnable" type="Bool">
+      <default>true</default>
+    </entry>
+
+    <!-- Appearance - Block buttons -->
+    <entry name="BlockButtonsVerticalMargin" type="Int">
+      <default>3</default>
+    </entry>
+    <entry name="BlockButtonsHorizontalMargin" type="Int">
+      <default>6</default>
+    </entry>
+    <entry name="BlockButtonsSpacing" type="Int">
+      <default>3</default>
+    </entry>
+    <entry name="BlockButtonsSetCommonSizeForAll" type="Bool">
+      <default>false</default>
+    </entry>
+
+    <!-- Appearance - Block labels -->
+    <entry name="BlockLabelsMaximumLength" type="Int">
+      <default>100</default>
+    </entry>
+    <entry name="BlockLabelsCustomFont" type="String">
+      <default></default>
+    </entry>
+    <entry name="BlockLabelsCustomFontSize" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="BlockLabelsCustomColor" type="String">
+      <default></default>
+    </entry>
+
+    <!-- Appearance - Block indicators -->
+    <entry name="BlockIndicatorsStyle" type="Int">
+      <default>0</default>
+    </entry>
+    <entry name="BlockIndicatorsInvertPosition" type="Bool">
+      <default>false</default>
+    </entry>
+    <entry name="BlockIndicatorsCustomColorForStyleA" type="String">
+      <default></default>
+    </entry>
+    <entry name="BlockIndicatorsCustomColorForStyleB" type="String">
+      <default></default>
+    </entry>
+    <entry name="BlockIndicatorsCustomColorForStyleC" type="String">
+      <default></default>
+    </entry>
+
   </group>
 </kcfg>
