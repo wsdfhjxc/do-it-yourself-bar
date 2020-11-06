@@ -58,18 +58,16 @@ bool DoItYourselfBar::registerDBusService() {
         sessionBus.unregisterObject(path, QDBusConnection::UnregisterTree);
     }
 
-    bool dbusSuccess = false;
-
     if (cfg_DBusInstanceId != 0) {
         QString path = "/id_" + QString::number(cfg_DBusInstanceId);
         if (sessionBus.registerObject(path, QString(SERVICE_NAME),
                                       &dbusService, QDBusConnection::ExportAllSlots)) {
-            dbusSuccess = true;
             dbusInstanceId = cfg_DBusInstanceId;
+            return true;
         }
     }
 
-    return;
+    return false;
 }
 
 void DoItYourselfBar::handlePassedData(QString data) {
