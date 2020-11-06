@@ -37,8 +37,9 @@ private:
     void killChild();
 
     DBusService dbusService;
+    bool dbusSuccess;
     unsigned dbusInstanceId;
-    bool registerDBusService();
+    void registerDBusService();
 
     unsigned cfg_DBusInstanceId;
     QString cfg_StartupScriptPath;

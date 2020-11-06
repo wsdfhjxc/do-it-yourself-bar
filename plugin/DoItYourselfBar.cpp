@@ -11,6 +11,7 @@ DoItYourselfBar::DoItYourselfBar(QObject* parent) :
         QObject(parent),
         childPid(0),
         dbusService(parent),
+        dbusSuccess(false),
         dbusInstanceId(0),
         cfg_DBusInstanceId(0) {
 
@@ -23,7 +24,7 @@ DoItYourselfBar::~DoItYourselfBar() {
 }
 
 void DoItYourselfBar::runStartupScript() {
-    if (!cfg_StartupScriptPath.isEmpty()) {
+    if (!cfg_StartupScriptPath.isEmpty() && dbusSuccess) {
         childPid = fork();
         if (childPid == 0) {
             QString arg1 = cfg_StartupScriptPath;
@@ -42,7 +43,7 @@ void DoItYourselfBar::runCommand(QString command) {
 }
 
 void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
-    bool dbusSuccess = registerDBusService();
+    registerDBusService();
     emit dbusSuccessChanged(dbusSuccess);
 }
 
@@ -58,7 +59,7 @@ void DoItYourselfBar::killChild() {
     }
 }
 
-bool DoItYourselfBar::registerDBusService() {
+void DoItYourselfBar::registerDBusService() {
     auto sessionBus = QDBusConnection::sessionBus();
     sessionBus.registerService(SERVICE_NAME);
 
@@ -67,16 +68,16 @@ bool DoItYourselfBar::registerDBusService() {
         sessionBus.unregisterObject(path, QDBusConnection::UnregisterTree);
     }
 
+    dbusSuccess = false;
+
     if (cfg_DBusInstanceId != 0) {
         QString path = "/id_" + QString::number(cfg_DBusInstanceId);
         if (sessionBus.registerObject(path, QString(SERVICE_NAME),
                                       &dbusService, QDBusConnection::ExportAllSlots)) {
+            dbusSuccess = true;
             dbusInstanceId = cfg_DBusInstanceId;
-            return true;
         }
     }
-
-    return false;
 }
 
 void DoItYourselfBar::handlePassedData(QString data) {
