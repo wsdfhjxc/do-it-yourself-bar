@@ -58,7 +58,7 @@ Component {
 
             readonly property int lineWidth: 3
 
-            visible: config.IndicatorsStyle != 5
+            visible: config.BlockIndicatorsStyle != 5
 
             color: {
                 if (style == "A") {
