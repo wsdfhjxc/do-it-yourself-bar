@@ -11,14 +11,13 @@ import org.kde.plasma.doityourselfbar 1.0
 Item {
     id: root
 
-    Plasmoid.fullRepresentation: RowLayout {
-        Label {
-            text: "Hello"
-        }
-    }
+    BlockButtonTooltip { id: tooltip }
+
+    Plasmoid.fullRepresentation: Container {}
     Plasmoid.preferredRepresentation: Plasmoid.fullRepresentation
 
     property QtObject config: plasmoid.configuration
+    property Item container: plasmoid.fullRepresentationItem
 
     property bool isTopLocation: plasmoid.location == PlasmaCore.Types.TopEdge
     property bool isVerticalOrientation: plasmoid.formFactor == PlasmaCore.Types.Vertical
@@ -41,16 +40,8 @@ Item {
         // dialog to read this property and show D-Bus service status.
         onDbusSuccessChanged: config.DBusSuccess = dbusSuccess
 
-        onInvalidDataFormatDetected: {
-            console.warn("invalid data format detected");
-        }
+        onInvalidDataFormatDetected: container.addErrorBlockButton()
 
-        onBlockInfoListSent: function(blockInfoList) {
-            console.warn("block info list sent");
-            console.warn(blockInfoList[0].style);
-            console.warn(blockInfoList[0].labelText);
-            console.warn(blockInfoList[0].tooltipText);
-            console.warn(blockInfoList[0].commandToExecOnClick);
-        }
+        onBlockInfoListSent: container.update(blockInfoList)
     }
 }
