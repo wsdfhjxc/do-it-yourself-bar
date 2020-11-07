@@ -135,7 +135,7 @@ Here is an example of implementing a trivial application launcher widget:
 ID=$1
 
 DATA+="| A | Kate | Launch Kate | kate |"
-DATA+="| A | GIMP  | Launch GIMP | flatpak run org.gimp.GIMP |"
+DATA+="| A | GIMP | Launch GIMP | flatpak run org.gimp.GIMP |"
 DATA+="| A | Inkscape | Launch Inkscape | flatpak run org.inkscape.Inkscape |"
 
 qdbus org.kde.plasma.doityourselfbar /id_$ID \
