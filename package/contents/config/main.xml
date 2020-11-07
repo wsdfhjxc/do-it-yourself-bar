@@ -54,7 +54,13 @@
     <entry name="BlockLabelsCustomFontSize" type="Int">
       <default>0</default>
     </entry>
-    <entry name="BlockLabelsCustomColor" type="String">
+    <entry name="BlockLabelsCustomColorForStyleA" type="String">
+      <default></default>
+    </entry>
+    <entry name="BlockLabelsCustomColorForStyleB" type="String">
+      <default></default>
+    </entry>
+    <entry name="BlockLabelsCustomColorForStyleC" type="String">
       <default></default>
     </entry>
 
