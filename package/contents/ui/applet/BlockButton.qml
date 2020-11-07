@@ -81,6 +81,21 @@ Component {
             }
 
             width: {
+                if (isVerticalOrientation) {
+                    if (config.BlockIndicatorsStyle == 1) {
+                        return lineWidth;
+                    }
+                    if (config.BlockIndicatorsStyle == 4) {
+                        return parent.width;
+                    }
+                    if (config.BlockButtonsSetCommonSizeForAll &&
+                        container.largestBlockButton &&
+                        container.largestBlockButton != parent &&
+                        container.largestBlockButton._label.implicitWidth > label.implicitWidth) {
+                        return container.largestBlockButton._indicator.width;
+                    }
+                    return label.implicitWidth + 2 * config.BlockButtonsHorizontalMargin;
+                }
                 if (config.BlockIndicatorsStyle == 1) {
                     return lineWidth;
                 }
@@ -89,6 +104,9 @@ Component {
 
             height: {
                 if (config.BlockIndicatorsStyle == 4) {
+                    if (isVerticalOrientation) {
+                        return parent.height + 0.5 - 2 * config.BlockButtonsSpacing;
+                    }
                     return parent.height;
                 }
                 if (config.BlockIndicatorsStyle > 0) {
@@ -98,6 +116,13 @@ Component {
             }
 
             x: {
+                if (isVerticalOrientation) {
+                    if (config.BlockIndicatorsStyle != 1) {
+                        return (parent.width - width) / 2;
+                    }
+                    return config.BlockIndicatorsInvertPosition ?
+                           parent.width - lineWidth : 0;
+                }
                 if (config.BlockIndicatorsStyle == 1 &&
                     config.BlockIndicatorsInvertPosition) {
                     return parent.width - width - (config.BlockButtonsSpacing || 0);
