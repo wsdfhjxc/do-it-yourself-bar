@@ -44,7 +44,7 @@ Item {
         }
 
         SectionHeader {
-            text: "Buttons"
+            text: "Block buttons"
         }
 
         RowLayout {
@@ -119,7 +119,7 @@ Item {
         }
 
         SectionHeader {
-            text: "Labels"
+            text: "Block labels"
         }
 
         RowLayout {
@@ -246,7 +246,7 @@ Item {
         }
 
         SectionHeader {
-            text: "Indicators"
+            text: "Block indicators"
         }
 
         RowLayout {
