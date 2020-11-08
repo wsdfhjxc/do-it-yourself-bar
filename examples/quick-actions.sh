@@ -9,7 +9,7 @@
 # 2. Open plasmoid's configuration dialog and head to the Appearance tab
 # 3. Set horizontal/vertical margins and spacing to your liking
 # 4. Set fa-solid-900 as a custom font for block labels
-# 5. Set the custom font size to 48 px
+# 5. Set the custom font size to 40 px or larger
 # 6. Choose Block as a style for block indicators
 
 ID=$1
