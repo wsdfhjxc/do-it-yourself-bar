@@ -230,6 +230,7 @@ Component {
             onClicked: {
                 if (tooltipText) {
                     killTooltipTimer();
+                    tooltip.visible = false;
                 }
                 if (mouse.button == Qt.LeftButton) {
                     backend.runCommand(commandToExecOnClick);
