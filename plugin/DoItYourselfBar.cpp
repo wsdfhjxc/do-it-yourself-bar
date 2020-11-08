@@ -56,6 +56,7 @@ void DoItYourselfBar::killChild() {
     if (childPid > 0) {
         kill(childPid, SIGTERM);
         wait(NULL);
+        childPid = 0;
     }
 }
 
