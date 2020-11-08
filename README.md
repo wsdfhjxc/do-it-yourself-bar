@@ -228,3 +228,5 @@ esac
 qdbus org.kde.plasma.doityourselfbar /id_$ID \
       org.kde.plasma.doityourselfbar.pass "$DATA"
 ```
+
+As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups]() KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/05b3b776275dbddcfb3e58591b999275cb9c14a4/simple-window-groups/contents/code/main.js#L58). You can do similar things in your own KWin script.
