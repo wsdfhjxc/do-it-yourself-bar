@@ -24,6 +24,8 @@ DoItYourselfBar::~DoItYourselfBar() {
 }
 
 void DoItYourselfBar::runStartupScript() {
+    killChild();
+
     if (!cfg_StartupScriptPath.isEmpty() && dbusSuccess) {
         childPid = fork();
         if (childPid == 0) {
@@ -44,11 +46,11 @@ void DoItYourselfBar::runCommand(QString command) {
 
 void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
     registerDBusService();
+    runStartupScript();
     emit dbusSuccessChanged(dbusSuccess);
 }
 
 void DoItYourselfBar::cfg_StartupScriptPathChanged() {
-    killChild();
     runStartupScript();
 }
 
