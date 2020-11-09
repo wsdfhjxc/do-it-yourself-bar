@@ -10,7 +10,7 @@ Simple clock widget example:
 
 ![](screenshots/1.gif)
 
-Trivial application launcher widget example:
+Trivial app launcher widget example:
 
 ![](screenshots/2.gif)
 
@@ -18,9 +18,15 @@ Network/volume/battery widget example:
 
 ![](screenshots/3.gif)
 
-Interactive quick actions widget example:
+Pager-like widget used by a KWin script:
 
 ![](screenshots/4.gif)
+
+<sup>See the end of the readme for more details about this one.</sup>
+
+Interactive quick actions widget example:
+
+![](screenshots/5.gif)
 
 ## Installation
 
@@ -127,7 +133,7 @@ do
 done
 ```
 
-Here is an example of implementing a trivial application launcher widget:
+Here is an example of implementing a trivial app launcher widget:
 
 ```bash
 #!/bin/bash
@@ -151,12 +157,17 @@ ID=$1
 
 while true
 do
-    NET=$(nmcli -f STATE -t g)
+    [[ $(nmcli -f STATE -t g) == "connected" ]] && {
+        NET="CONNECTED"
+    } || {
+        NET="DISCONNECTED"
+    }
+
     VOL=$(amixer -D pulse sget Master | grep -Po "\[\K(\d+)" | head -n 1)
     BATT=$(cat /sys/class/power_supply/BAT*/capacity)
 
     DATA=""
-    DATA+="| A | ${NET^^} | | |"
+    DATA+="| A | $NET | | |"
     DATA+="| B | VOL $VOL% | | |"
     DATA+="| C | BATT $BATT% | | |"
 
@@ -172,17 +183,20 @@ And here is a longer example of implementing an interactive quick actions widget
 ```bash
 #!/bin/bash
 
-# Note: This example widget uses Line Awesome font's Unicode glyphs as labels
+# Note: This example widget uses Line Awesome font's Unicode glyphs as labels.
 # You can find the fa-solid-900.ttf file at https://github.com/icons8/line-awesome
-# and put it into ~/.fonts or ~/.local/share/fonts to have it installed
+# and put it into ~/.fonts or ~/.local/share/fonts to have it installed.
+# Also, to refresh the font cache run: latte-dock --replace & disown
 
 # In order to get it look like on the screenshot in the readme:
-# 1. Add the widget to a Latte Dock's instance placed at the edge of the screen
-# 2. Open plasmoid's configuration dialog and head to the Appearance tab
-# 3. Set horizontal/vertical margins and spacing to your liking
-# 4. Set fa-solid-900 as a custom font for block labels
-# 5. Set the custom font size to 40 px or larger
-# 6. Choose Block as a style for block indicators
+# 1. Add the widget to a Latte Dock's instance placed at the left edge
+# 2. Adjust the dock's settings (item size 38 px, no shadows, etc.)
+# 3. Open plasmoid's configuration dialog and the Appearance tab
+# 4. Set horizontal and vertical margins and spacing to 6 px
+# 5. Set fa-solid-900 as a custom font for block labels
+# 6. Set the custom font size for block labels to 24 px or larger
+# 7. Choose Block as a style for block indicators
+# 8. Adjust block label and indicator colors to your liking
 
 ID=$1
 VIEW=$2
@@ -229,4 +243,4 @@ qdbus org.kde.plasma.doityourselfbar /id_$ID \
       org.kde.plasma.doityourselfbar.pass "$DATA"
 ```
 
-As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/05b3b776275dbddcfb3e58591b999275cb9c14a4/simple-window-groups/contents/code/main.js#L58). You can do similar things in your own KWin script.
+As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/master/simple-window-groups/contents/code/main.js#L58). You can do similar a thing in your own KWin scripts.
