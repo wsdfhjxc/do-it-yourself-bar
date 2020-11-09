@@ -68,7 +68,7 @@ Component {
                     return config.BlockIndicatorsCustomColorForStyleB || theme.buttonFocusColor;
                 }
                 if (style == "C") {
-                    return config.BlockIndicatorsCustomColorForStyleC || "#a35050";
+                    return config.BlockIndicatorsCustomColorForStyleC || "#e34a4a";
                 }
                 return theme.textColor;
             }

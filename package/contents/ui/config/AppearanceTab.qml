@@ -407,7 +407,7 @@ Item {
             ColorButton {
                 id: indicatorsCustomColorForStyleCButton
                 enabled: indicatorsCustomColorForStyleCCheckBox.checked
-                color: cfg_BlockIndicatorsCustomColorForStyleC || "#a35050"
+                color: cfg_BlockIndicatorsCustomColorForStyleC || "#e34a4a"
 
                 colorAcceptedCallback: function(color) {
                     cfg_BlockIndicatorsCustomColorForStyleC = color;
