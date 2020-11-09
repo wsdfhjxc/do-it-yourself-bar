@@ -22,8 +22,6 @@ Pager-like widget used by a KWin script:
 
 ![](screenshots/4.gif)
 
-<sup>See the end of the readme for more details about this one.</sup>
-
 Interactive quick actions widget example:
 
 ![](screenshots/5.gif)
