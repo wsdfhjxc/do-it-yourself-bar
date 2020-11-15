@@ -243,4 +243,4 @@ qdbus org.kde.plasma.doityourselfbar /id_$ID \
 
 ### Other script examples
 
-As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/master/simple-window-groups/contents/code/main.js#L58). You can do a similar thing in your own KWin scripts.
+As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/master/simple-window-groups/contents/code/main.js#L98). You can do a similar thing in your own KWin scripts.
