@@ -1,6 +1,6 @@
 # Do It Yourself Bar
 
-This is an applet for KDE Plasma panel (or Latte Dock) that lets you create simple text-based widgets containing dynamically updated information from various sources. Its main feature is the usage of D-Bus for data input, but beware, it's the only way, which means that the applet simply can't be used without having D-Bus support.
+This is an applet for KDE Plasma panel (or Latte Dock) that lets you create simple, interactive, text-based widgets containing dynamically updated information from various sources. Its main feature is the usage of D-Bus for data input, which means that the widgets can be updated anytime on demand, e.g. from Bash scripts, KWin scripts, etc.
 
 In terms of user experience, the plasmoid is similar to [Kargos](https://github.com/lipido/kargos) or [Command Output](https://github.com/Zren/plasma-applet-commandoutput) applets. The data can be presented neatly, but the string formatting and sending it to the applet is on the user. Hence "Do It Yourself" in the title. For more details about available features and for some examples, see the section about configuration and usage.
 
