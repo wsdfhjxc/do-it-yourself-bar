@@ -142,7 +142,7 @@ Component {
 
             radius: {
                 if (config.BlockIndicatorsStyle == 2) {
-                    return 2;
+                    return config.BlockIndicatorsStyleBlockRadius;
                 }
                 if (config.BlockIndicatorsStyle == 3) {
                     return 300;

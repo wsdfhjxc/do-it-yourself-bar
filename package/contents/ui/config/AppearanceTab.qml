@@ -28,6 +28,7 @@ Item {
 
     // Block indicators
     property alias cfg_BlockIndicatorsStyle: blockIndicatorsStyleComboBox.currentIndex
+    property alias cfg_BlockIndicatorsStyleBlockRadius: blockIndicatorsStyleBlockRadiusSpinBox.value
     property alias cfg_BlockIndicatorsInvertPosition: blockIndicatorsInvertPositionCheckBox.checked
     property string cfg_BlockIndicatorsCustomColorForStyleA
     property string cfg_BlockIndicatorsCustomColorForStyleB
@@ -337,6 +338,29 @@ Item {
                     "Full size",
                     "Use labels"
                 ]
+
+                onCurrentIndexChanged: {
+                    if (cfg_BlockIndicatorsStyle == 2) {
+                        cfg_BlockIndicatorsStyleBlockRadius = blockIndicatorsStyleBlockRadiusSpinBox.value;
+                    } else {
+                        cfg_BlockIndicatorsStyleBlockRadius = 2;
+                    }
+                }
+
+                Component.onCompleted: {
+                    if (cfg_BlockIndicatorsStyle != 2) {
+                        cfg_BlockIndicatorsStyleBlockRadius = 2;
+                    }
+                }
+            }
+
+            SpinBox {
+                id: blockIndicatorsStyleBlockRadiusSpinBox
+                visible: cfg_BlockIndicatorsStyle == 2
+                value: cfg_BlockIndicatorsStyleBlockRadius
+                minimumValue: 0
+                maximumValue: 300
+                suffix: " px corner radius"
             }
         }
 
