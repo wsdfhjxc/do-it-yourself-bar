@@ -188,16 +188,6 @@ done
 # and put it into ~/.fonts or ~/.local/share/fonts to have it installed.
 # Also, to refresh the font cache run: latte-dock --replace & disown
 
-# In order to get it look like on the screenshot in the readme:
-# 1. Add the widget to a Latte Dock's instance placed at the left edge
-# 2. Adjust the dock's settings (item size 38 px, no shadows, etc.)
-# 3. Open plasmoid's configuration dialog and the Appearance tab
-# 4. Set horizontal and vertical margins and spacing to 6 px
-# 5. Set fa-solid-900 as a custom font for block labels
-# 6. Set the custom font size for block labels to 24 px or larger
-# 7. Choose Block as a style for block indicators
-# 8. Adjust block label and indicator colors to your liking
-
 ID=$1
 VIEW=$2
 SELF_PATH=$(realpath "$0")
@@ -242,6 +232,17 @@ esac
 qdbus org.kde.plasma.doityourselfbar /id_$ID \
       org.kde.plasma.doityourselfbar.pass "$DATA"
 ```
+
+Note: In order to get it look like on the screenshot:
+
+1. Add the plasmoid to a Latte Dock instance
+2. Adjust the dock's settings (left edge, item size 38 px, etc.)
+3. Open applet's configuration dialog and the Appearance tab
+4. Set horizontal and vertical margins and spacing to 6 px
+5. Set fa-solid-900 as a custom font for block labels
+6. Set the custom font size for block labels to 24 px or larger
+7. Choose Block as a style for block indicators
+8. Adjust the block label and indicator colors to your liking
 
 ### Other script examples
 
