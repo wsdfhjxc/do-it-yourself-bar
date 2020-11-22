@@ -109,7 +109,9 @@ Of course the D-Bus method call should be performed after the plasmoid is loaded
 
 ### Some actually useful examples
 
-Here is an example of implementing a simple clock widget:
+Below you can see Bash scripts implementing the widgets seen on the screenshots.
+
+#### Simple clock widget
 
 ```bash
 #!/bin/bash
@@ -131,7 +133,7 @@ do
 done
 ```
 
-Here is an example of implementing a trivial app launcher widget:
+#### Trivial app launcher widget
 
 ```bash
 #!/bin/bash
@@ -146,7 +148,7 @@ qdbus org.kde.plasma.doityourselfbar /id_$ID \
       org.kde.plasma.doityourselfbar.pass "$DATA"
 ```
 
-Here is an example of implementing a network/volume/battery widget:
+#### Network/volume/battery widget
 
 ```bash
 #!/bin/bash
@@ -176,7 +178,7 @@ do
 done
 ```
 
-And here is a longer example of implementing an interactive quick actions widget:
+#### Interactive quick actions widget
 
 ```bash
 #!/bin/bash
