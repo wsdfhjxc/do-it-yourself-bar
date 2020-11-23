@@ -57,7 +57,7 @@ void DoItYourselfBar::cfg_StartupScriptPathChanged() {
 
 void DoItYourselfBar::killChild() {
     if (childPid > 0) {
-        kill(childPid, SIGTERM);
+        kill(childPid, SIGKILL);
         wait(NULL);
         childPid = 0;
     }
