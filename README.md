@@ -83,7 +83,7 @@ Note: If the label text is omitted, the applet will display an empty button.
 
 Note: If the separator symbol needs to be a part of the label or the tooltip text, it can be escaped like this: `\|`
 
-### Extra Qt text formatting
+#### Extra Qt text formatting
 
 If you want to have more control from within the script (e.g. in regard to colors, or mixing different fonts, etc.), you can try formatting the text with Qt's supported HTML subset. See [this page](https://doc.qt.io/qt-5/richtext-html-subset.html) for more details. And here is an example:
 
