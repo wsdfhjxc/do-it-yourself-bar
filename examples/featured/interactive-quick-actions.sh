@@ -7,6 +7,7 @@
 
 ID=$1
 VIEW=$2
+
 SELF_PATH=$(realpath "$0")
 
 case $VIEW in
