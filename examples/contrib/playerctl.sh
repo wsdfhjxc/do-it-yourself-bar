@@ -1,5 +1,8 @@
 #!/bin/bash
 
+# Requirements: playerctl
+# sudo apt install playerctl
+
 ID=$1
 UPDATE_ONCE=$2
 
