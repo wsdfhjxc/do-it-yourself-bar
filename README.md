@@ -83,6 +83,17 @@ Note: If the label text is omitted, the applet will display an empty button.
 
 Note: If the separator symbol needs to be a part of the label or the tooltip text, it can be escaped like this: `\|`
 
+### Extra Qt text formatting
+
+If you want to have more control from within the script (e.g. in regard to colors, or mixing different fonts, etc.), you can try formatting the text with Qt's supported HTML subset. See [this page](https://doc.qt.io/qt-5/richtext-html-subset.html) for more details. And here is an example:
+
+```
+| A | <font color='#ff0000'>This label will be red</font> | | |
+| A | <font face='Hack'>123</font> 456 | | |
+```
+
+Note: Remember that HTML tags count towards the label's length (characters).
+
 ### Passing the data through D-Bus
 
 Here is an example of using the `qdbus` tool from CLI:
@@ -236,14 +247,16 @@ qdbus org.kde.plasma.doityourselfbar /id_$ID \
 Note: In order to get it look like on the screenshot:
 
 1. Add the plasmoid to a Latte Dock instance
-2. Adjust the dock's settings (left edge, item size 38 px, etc.)
-3. Open applet's configuration dialog and the Appearance tab
+2. Adjust the dock's settings (left edge, item size 38 px)
+3. Open applet's config dialog and the Appearance tab
 4. Set horizontal and vertical margins and spacing to 6 px
 5. Set fa-solid-900 as a custom font for block labels
 6. Set the custom font size for block labels to 24 px or larger
 7. Choose Block as a style for block indicators
 8. Adjust the block label and indicator colors to your liking
 
-### Other script examples
+### Other widgets and script examples
 
-As for other examples, not necessarily involving Bash scripts, take a look at the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, that utilizes the Do It Yourself Bar plasmoid to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, starts [here](https://github.com/wsdfhjxc/kwin-scripts/blob/master/simple-window-groups/contents/code/main.js#L98). You can do a similar thing in your own KWin scripts.
+As for other examples, not necessarily involving Bash scripts, take a look at the `examples` directory and the `contrib` subdirectory within it. There might be some interesting things inside. And if you managed to do something really cool and useful on your own, you can send a pull request to get the thing merged, and I'll probably accept it.
+
+Also, if you are interested in using the Do It Yourself Bat plasmoid with KWin scripts, see the [Simple Window Groups](https://github.com/wsdfhjxc/kwin-scripts) KWin script, which utilizes the applet to provide a dynamically updated Pager-like panel widget for the user. The most interesting part, in regard to code snippets, is located [here](https://github.com/wsdfhjxc/kwin-scripts/blob/master/simple-window-groups/contents/code/main.js#L98-L133). You can do a similar thing in your own KWin scripts.
