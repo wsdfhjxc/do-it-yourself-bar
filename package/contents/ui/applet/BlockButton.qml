@@ -159,6 +159,7 @@ Component {
             anchors.horizontalCenter: parent.horizontalCenter
 
             text: labelText
+            textFormat: Text.RichText
 
             color: {
                 if (config.BlockIndicatorsStyle == 5) {
