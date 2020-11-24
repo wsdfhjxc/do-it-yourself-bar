@@ -1,6 +1,6 @@
 #!/bin/bash
 
-# Requirements: playerctl
+$(echo $WEATHER | sed "s/\+//g")# Requirements: playerctl
 # sudo apt install playerctl
 
 ID=$1
@@ -23,6 +23,8 @@ update_widget() {
     [[ "$STATUS" == "Paused" ]] && {
         LABEL="PAUSED: $LABEL"
     }
+
+    LABEL=${LABEL//|/\\|} # escape possible | separators
 
     DATA="| A | $LABEL | $TOOLTIP | $COMMAND |"
 
