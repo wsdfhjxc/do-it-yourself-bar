@@ -14,7 +14,7 @@ update_widget() {
 
     LABEL="N/A"
     [[ -n "$WEATHER" ]] && {
-        LABEL=$(echo $WEATHER | sed "s/\+//g")
+        LABEL=${WEATHER/+/} # remove + symbol
     }
 
     DATA="| A | ${LABEL^^} | Click to refresh | $COMMAND |"
