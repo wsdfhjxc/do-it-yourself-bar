@@ -11,18 +11,19 @@ org.kde.kdeconnect.device.battery.charge"
 
 while true
 do
-    BATTERY_LEVEL=$($QUERY_COMMAND)
-
     STYLE="A"
-    TOOLTIP="I'm fine, thanks..."
-    [[ "$BATTERY_LEVEL" -le 15 ]] && {
-        STYLE="C"
-        TOOLTIP="Hey! Plug me in!"
-    }
 
+    BATTERY_LEVEL=$($QUERY_COMMAND)
     BATTERY_LEVEL_PERCENT="N/A"
-    [[ -n "$BATTERY_LEVEL" ]] && {
-        BATTERY_LEVEL_PERCENT="$BATTERY_LEVEL%"
+
+    [[ "$BATTERY_LEVEL" != *"Error"* ]] && {
+        [[ "$BATTERY_LEVEL" -le 15 ]] && {
+            STYLE="C"
+            TOOLTIP="Hey! Plug me in!"
+        }
+        [[ -n "$BATTERY_LEVEL" ]] && {
+            BATTERY_LEVEL_PERCENT="$BATTERY_LEVEL%"
+        }
     }
 
     DATA="| $STYLE | PHONE: $BATTERY_LEVEL_PERCENT | $TOOLTIP | |"
