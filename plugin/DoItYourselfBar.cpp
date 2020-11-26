@@ -34,7 +34,7 @@ void DoItYourselfBar::runStartupScript() {
             execl(arg1.toStdString().c_str(),
                   arg1.toStdString().c_str(),
                   arg2.toStdString().c_str(), NULL);
-            exit(0);
+            kill(getpid(), SIGKILL);
         }
     }
 }
