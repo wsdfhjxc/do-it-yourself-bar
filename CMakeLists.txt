@@ -13,9 +13,21 @@ if(NOT CMAKE_INSTALL_PREFIX)
     set(CMAKE_INSTALL_PREFIX "/usr")
 endif()
 
-file(STRINGS /etc/os-release distro REGEX "^NAME=.*$")
-if(distro MATCHES ".*openSUSE.*")
-    set(QML_INSTALL_DIR "/usr/lib64/qt5/qml")
+if(NOT KDE_INSTALL_QMLDIR)
+    file(STRINGS /etc/os-release distro REGEX "^NAME=.*$")
+    if(distro MATCHES ".*Ubuntu.*")
+        set(KDE_INSTALL_QMLDIR "/usr/lib/x86_64-linux-gnu/qt5/qml")
+    endif()
+
+    file(STRINGS /etc/os-release distro REGEX "^NAME=.*$")
+    if(distro MATCHES ".*openSUSE.*")
+        set(KDE_INSTALL_QMLDIR "/usr/lib64/qt5/qml")
+    endif()
+
+    file(STRINGS /etc/os-release distro REGEX "^NAME=.*$")
+    if(distro MATCHES ".*Arch|Manjaro|Solus.*")
+        set(KDE_INSTALL_QMLDIR "/usr/lib/qt/qml")
+    endif()
 endif()
 
 find_package(ECM REQUIRED NO_MODULE)
@@ -54,7 +66,7 @@ target_link_libraries(doityourselfbar
                       Qt5::DBus
                       KF5::Plasma)
 
-install(TARGETS doityourselfbar DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/doityourselfbar)
-install(FILES plugin/qmldir DESTINATION ${QML_INSTALL_DIR}/org/kde/plasma/doityourselfbar)
+install(TARGETS doityourselfbar DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/doityourselfbar)
+install(FILES plugin/qmldir DESTINATION ${KDE_INSTALL_QMLDIR}/org/kde/plasma/doityourselfbar)
 
 ecm_install_icons(ICONS icons/sc-apps-doityourselfbar.svg DESTINATION ${ICON_INSTALL_DIR})
