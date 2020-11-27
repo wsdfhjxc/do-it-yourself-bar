@@ -17,6 +17,16 @@ DoItYourselfBar::DoItYourselfBar(QObject* parent) :
 
     QObject::connect(&dbusService, &DBusService::dataPassed,
                      this, &DoItYourselfBar::handlePassedData);
+
+    QObject::connect(this, &DoItYourselfBar::cfg_DBusInstanceIdChanged, this, [&] {
+        registerDBusService();
+        runStartupScript();
+        emit dbusSuccessChanged(dbusSuccess);
+    });
+
+    QObject::connect(this, &DoItYourselfBar::cfg_StartupScriptPathChanged, this, [&] {
+        runStartupScript();
+    });
 }
 
 DoItYourselfBar::~DoItYourselfBar() {
@@ -43,16 +53,6 @@ void DoItYourselfBar::runCommand(QString command) {
     if (!command.isEmpty()) {
         system(QString("(" + command + ") &").toStdString().c_str());
     }
-}
-
-void DoItYourselfBar::cfg_DBusInstanceIdChanged() {
-    registerDBusService();
-    runStartupScript();
-    emit dbusSuccessChanged(dbusSuccess);
-}
-
-void DoItYourselfBar::cfg_StartupScriptPathChanged() {
-    runStartupScript();
 }
 
 void DoItYourselfBar::killChild() {

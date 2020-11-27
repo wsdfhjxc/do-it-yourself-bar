@@ -24,13 +24,13 @@ public:
                MEMBER cfg_StartupScriptPath
                NOTIFY cfg_StartupScriptPathChanged)
 
-    void cfg_DBusInstanceIdChanged();
-    void cfg_StartupScriptPathChanged();
-
 signals:
     void dbusSuccessChanged(bool dbusSuccess);
     void invalidDataFormatDetected();
     void blockInfoListSent(QVariantList blockInfoList);
+
+    void cfg_DBusInstanceIdChanged();
+    void cfg_StartupScriptPathChanged();
 
 private:
     pid_t childPid;
