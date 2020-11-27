@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$(echo $WEATHER | sed "s/\+//g")# Requirements: playerctl
+# Requirements: playerctl
 # sudo apt install playerctl
 
 ID=$1
