@@ -1,5 +1,11 @@
 # Changelog
 
+## 1.2
+
+### Changes
+
+* Fixed build issues on distros with older Qt versions
+
 ## 1.1
 
 ### Changes
