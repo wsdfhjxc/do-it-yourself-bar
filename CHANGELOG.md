@@ -5,6 +5,7 @@
 ### Changes
 
 * Fixed build issues on distros with older Qt versions
+* Fixed an issue with startup scripts not terminating gracefully
 
 ## 1.1
 
