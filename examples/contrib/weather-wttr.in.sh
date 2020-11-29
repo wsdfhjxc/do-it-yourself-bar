@@ -15,7 +15,7 @@ update_widget() {
     LABEL="N/A"
     [[ -n "$WEATHER" ]] && {
         LABEL=${WEATHER/+/}
-        LABEL=${WEATHER/-0/0}
+        LABEL=${LABEL/-0/0}
     }
 
     DATA="| A | ${LABEL^^} | Click to refresh | $COMMAND |"
