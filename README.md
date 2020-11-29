@@ -140,7 +140,7 @@ do
     qdbus org.kde.plasma.doityourselfbar /id_$ID \
           org.kde.plasma.doityourselfbar.pass "$DATA"
 
-    sleep 1m
+    sleep 5s
 done
 ```
 
