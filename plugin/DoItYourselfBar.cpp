@@ -44,7 +44,7 @@ void DoItYourselfBar::runStartupScript() {
             execl(arg1.toStdString().c_str(),
                   arg1.toStdString().c_str(),
                   arg2.toStdString().c_str(), NULL);
-            kill(getpid(), SIGKILL);
+            kill(getpid(), SIGTERM);
         }
     }
 }
@@ -57,7 +57,7 @@ void DoItYourselfBar::runCommand(QString command) {
 
 void DoItYourselfBar::killChild() {
     if (childPid > 0) {
-        kill(childPid, SIGKILL);
+        kill(childPid, SIGTERM);
         wait(NULL);
         childPid = 0;
     }
