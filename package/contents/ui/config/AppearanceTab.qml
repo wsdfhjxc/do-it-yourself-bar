@@ -81,17 +81,17 @@ Item {
 
             SpinBox {
                 id: blockButtonsHorizontalMarginSpinBox
-                enabled: cfg_BlockIndicatorsStyle != 5
+                //enabled: cfg_BlockIndicatorsStyle != 5 // See Issue #8
                 value: cfg_BlockButtonsHorizontalMargin
                 minimumValue: 0
                 maximumValue: 300
                 suffix: " px"
             }
 
-            HintIcon {
+            /*HintIcon { // See Issue #8
                 visible: !blockButtonsHorizontalMarginSpinBox.enabled
                 tooltipText: "Not available for the selected indicator style"
-            }
+            }*/
         }
 
         RowLayout {

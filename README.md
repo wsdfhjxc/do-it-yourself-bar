@@ -83,6 +83,8 @@ Note: If the label text is omitted, the applet will display an empty button.
 
 Note: If the separator symbol needs to be a part of the label or the tooltip text, it can be escaped like this: `\|`
 
+Note: Do not include line breaks between buttons.
+
 #### Extra Qt text formatting
 
 If you want to have more control from within the script (e.g. in regard to colors, or mixing different fonts, etc.), you can try formatting the text with Qt's supported HTML subset. See [this page](https://doc.qt.io/qt-5/richtext-html-subset.html) for more details. And here is an example:
@@ -114,6 +116,42 @@ var data =  // formatted string containing the data
 
 callDBus("org.kde.plasma.doityourselfbar", "/id_" + id,
          "org.kde.plasma.doityourselfbar", "pass", data);
+```
+
+Here is an example of using the `pydbus` library within a Python script:
+
+```python
+#!/bin/python3
+from pydbus import SessionBus
+from sys import argv
+
+if len(argv) == 1:
+    print("No DIY bar ID given!")
+    quit()
+
+diy=SessionBus().get("org.kde.plasma.doityourselfbar","/id_"+argv[1])
+diy=getattr(diy, 'pass') # pass is a keyword so you can't use diy.pass
+
+diy('|A|Label|Tooltip|kdialog --passivepopup "$(date)" 10 --title "Hello World"|')
+
+```
+
+Here is an example of using the `dbus-python` library within a Python script (Only lines 2 and 9 are different from above):
+
+```python
+#!/bin/python3
+from dbus import SessionBus
+from sys import argv
+
+if len(argv) == 1:
+    print("No DIY bar ID given!")
+    quit()
+
+diy=SessionBus().get_object("org.kde.plasma.doityourselfbar","/id_"+argv[1])
+diy=getattr(diy, 'pass') # pass is a keyword so you can't use diy.pass
+
+diy('|A|Label|Tooltip|kdialog --passivepopup "$(date)" 10 --title "Hello World"|')
+
 ```
 
 Of course the D-Bus method call should be performed after the plasmoid is loaded (the Plasma's panel or Latte Dock must be already running). But if you only use the startup script, you don't need to worry about that.
