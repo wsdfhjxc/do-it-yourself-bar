@@ -94,5 +94,11 @@ Item {
                              You can access it within the script by reading the <tt>$1</tt> variable"
             }
         }
+
+        RowLayout {
+            Label {
+                text: "Note: Script must have executable permissions."
+            }
+        }
     }
 }

@@ -1,11 +1,11 @@
 [Desktop Entry]
 Name=Do It Yourself Bar
-Comment=Create simple text-based widgets
+Comment=Create simple text-based DIY widgets
 Icon=doityourselfbar
 Type=Service
 
 X-KDE-PluginInfo-Name=org.kde.plasma.doityourselfbar
-X-KDE-PluginInfo-Version=1.2
+X-KDE-PluginInfo-Version=1.2.1
 X-KDE-PluginInfo-Author=wsdfhjxc
 X-KDE-ServiceTypes=Plasma/Applet
 
