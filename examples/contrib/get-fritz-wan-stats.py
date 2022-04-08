@@ -12,8 +12,17 @@ from fritzconnection.lib.fritzstatus import FritzStatus
 os.environ['FRITZ_USERNAME'] = 'scriptuser'
 os.environ['FRITZ_PASSWORD'] = 'the_password'
 
-fc = FritzStatus(address='fritz.box')
-while True:
+fc = None
+while not fc:
+    try:
+        fc = FritzStatus(address='fritz.box')
+    except:
+        data = '| A | FRITZ!Box not reachable | Have you changed username and password in get-fritz-wan-stats.py? Is your network up? | |'
+        os.system('/usr/bin/qdbus org.kde.plasma.doityourselfbar /id_' + sys.argv[1] + ' org.kde.plasma.doityourselfbar.pass \'' + data + '\'')
+        pass
+    time.sleep(5)
+
+while fc:
     data = '| A | FRITZ!Box conn. up: ' + fc.str_uptime + ' | External IP: ' + fc.external_ip + ' | xdg-open http://fritz.box |'
     data += '| B | WAN Download: ' + fc.str_transmission_rate[1] + '/s | FRITZ!Box WAN Download | |'
     data += '| C | WAN Upload: ' + fc.str_transmission_rate[0] + '/s | FRITZ!Box WAN Upload | |'
