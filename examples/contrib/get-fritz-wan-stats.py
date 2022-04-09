@@ -7,10 +7,15 @@
 #   (see https://fritzconnection.readthedocs.io)
 
 import os, sys, time
+from dbus import SessionBus
 from fritzconnection.lib.fritzstatus import FritzStatus
 
 os.environ['FRITZ_USERNAME'] = 'scriptuser'
 os.environ['FRITZ_PASSWORD'] = 'the_password'
+
+if len(sys.argv) == 1:
+    print("No DIY bar ID given!")
+    quit()
 
 fc = None
 while not fc:
@@ -22,9 +27,12 @@ while not fc:
         pass
     time.sleep(5)
 
+diy = SessionBus().get_object("org.kde.plasma.doityourselfbar","/id_" + sys.argv[1])
+diy = getattr(diy, 'pass')
+
 while fc:
     data = '| A | FRITZ!Box conn. up: ' + fc.str_uptime + ' | External IP: ' + fc.external_ip + ' | xdg-open http://fritz.box |'
     data += '| B | WAN Download: ' + fc.str_transmission_rate[1] + '/s | FRITZ!Box WAN Download | |'
     data += '| C | WAN Upload: ' + fc.str_transmission_rate[0] + '/s | FRITZ!Box WAN Upload | |'
-    os.system('/usr/bin/qdbus org.kde.plasma.doityourselfbar /id_' + sys.argv[1] + ' org.kde.plasma.doityourselfbar.pass \'' + data + '\'')
+    diy(data)
     time.sleep(5)
